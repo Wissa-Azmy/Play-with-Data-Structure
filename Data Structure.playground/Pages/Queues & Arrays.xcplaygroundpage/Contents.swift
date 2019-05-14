@@ -23,19 +23,12 @@ class Queue {
     // return the next element to be dequeued from the queue
     // if the queue is empty, return nil
     func peek() -> Int? {
-        if let item = storage.first {
-            return item
-        }
-        return nil
+        return storage.first
     }
     
     // remove and return the next element to be dequeued
     func dequeue() -> Int? {
-        if let item = storage.first {
-            storage.removeFirst()
-            return item
-        }
-        return nil
+        return storage.removeFirst()
     }
 }
 
