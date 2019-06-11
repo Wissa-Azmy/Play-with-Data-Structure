@@ -37,8 +37,9 @@ class Node {
     var value: Int
     var next: Node?
     
-    init(value: Int) {
+    init(value: Int, nextNode: Node? = nil) {
         self.value = value
+        self.next = nextNode
     }
 }
 
@@ -121,6 +122,53 @@ class LinkedList {
                 head = current?.next
             }
         }
+    }
+    
+    func getMidPoint() -> Node? {
+        var slow = self.getNode(atPosition: 0)
+        var fast = slow
+        
+        while (fast?.next?.next != nil) {
+            slow = slow?.next
+            fast = fast?.next?.next
+        }
+        
+        return slow
+    }
+    
+    func isCircular() -> Bool {
+        var isCircular = false
+        var slow = self.getNode(atPosition: 0)
+        var fast = slow
+        
+        while fast?.next?.next != nil {
+            slow = slow?.next
+            fast = fast?.next?.next
+            
+            if fast === slow {
+                isCircular = true
+            }
+        }
+        
+        return isCircular
+    }
+    
+    func findNodeFromLast(at position: Int) -> Node? {
+        var slow = self.getNode(atPosition: 0)
+        var fast = slow
+        var counter = position
+        
+        while counter > 0 {
+            fast = fast?.next
+            counter -= 1
+        }
+        
+        while fast?.next != nil {
+            slow = slow?.next
+            fast = fast?.next
+        }
+        
+        return slow
     }
 }
 
